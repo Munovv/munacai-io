@@ -1,0 +1,43 @@
+
+<div class="container" id="container">
+  <div class="form-container sign-up-container">
+    <form (submit)="regUser()" method="POST" ngForm #RegForm>
+      <h1>Регистрация</h1>
+        <input type="text" name="username" [(ngModel)]="regFormModel.username" placeholder="Имя" required />
+        <input type="email" name="email" [(ngModel)]="regFormModel.email" placeholder="Электронная почта" required/>
+        <input type="password" name="password" [(ngModel)]="regFormModel.password" placeholder="Пароль" required />
+      <button type="submit" [disabled]="RegForm.invalid">Создать</button>
+    </form>
+  </div>
+  <div class="form-container sign-in-container">
+    <form (submit)="authUser()" method="POST" ngForm #AuthForm>
+      <h1>Авторизация</h1>
+      <input type="email" name="email" [(ngModel)]="authFormModel.email" placeholder="Электронная почта" required/>
+      <input type="password" name="password" [(ngModel)]="authFormModel.password" placeholder="Пароль" required />
+      <button type="submit" [disabled]="AuthForm.invalid">Войти</button>
+    </form>
+  </div>
+  <div class="overlay-container">
+    <div class="overlay">
+      <div class="overlay-panel overlay-left">
+        <h1>Добро пожаловать</h1>
+        <p>Чтобы загрузить файлы и пользоваться нашей экосистемой, требуется авторизироваться!</p>
+        <button class="ghost" id="signIn" (click)="showAuthForm()">Войти</button>
+      </div>
+      <div class="overlay-panel overlay-right">
+        <h1>Привет, друг!</h1>
+        <p>Создай свой аккаунт и загружай файлы вместе с нами! Или же войди, если он уже создан.</p>
+        <button class="ghost" id="signUp" (click)="showRegForm()">Создать</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p>
+    Разработано
+    <a target="_blank" href="https://github.com/Munovv">Munovv</a> из <strong>Delarant +</strong>
+    - Заказать ЭЦП можно
+    <a target="_blank" href="https://deklarant.ru">Здесь</a>.
+  </p>
+</footer>
