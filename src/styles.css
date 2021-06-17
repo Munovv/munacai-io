@@ -8,7 +8,7 @@
   box-sizing: border-box;
 }
 
-body {
+.bodyman {
   background: #f6f5f7;
   display: flex;
   justify-content: center;
@@ -17,4 +17,10 @@ body {
   font-family: 'Montserrat', sans-serif;
   height: 100vh;
   margin: -20px 0 50px;
+}
+
+.profile-body {
+  background: #fff;
+  color: #141414;
+  font-family: 'Montserrat', sans-serif;
 }

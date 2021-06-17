@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core'
 import { HttpClient, HttpHeaders } from '@angular/common/http'
+import { Router } from "@angular/router"
 
 @Component({
   selector: 'app-auth',
@@ -20,26 +21,48 @@ export class AuthComponent implements OnInit {
       password: ''
     }
 
-    headers: HttpHeaders
+    user: any = {
+      email: null,
+      username: null,
+      token: null,
+      session: null
+    }
 
-    constructor(private http: HttpClient) {
-      this.headers = new HttpHeaders().set('Authorization', 'token-munacai-12')
+    constructor(private http: HttpClient, private router: Router) {
+      if (localStorage.getItem('currentUser') !== null) {
+        this.location('/profile')
+      }
+      document.getElementsByTagName('body')[0].classList.add("bodyman")
     }
 
     ngOnInit() { }
 
     authUser(): boolean {
-      this.http.post('http://munacai.service/authUser',
-                      this.authFormModel,
-                      { headers: this.headers }
+      this.http.post('http://localhost:88/auth', this.authFormModel)
+      .subscribe(
+        res => {
+          this.user = res
+          localStorage.setItem('currentUser', JSON.stringify(this.user));
+          this.router.navigate(['/profile'])
+        },
+        err => {
+          console.error(err)
+        }
       )
       return false
     }
 
     regUser(): boolean {
-      this.http.post('http://munacai.service/regUser',
-                      this.regFormModel,
-                      { headers: this.headers }
+      this.http.post('http://localhost:88/reg', this.regFormModel)
+      .subscribe(
+        res => {
+          this.user = res
+          localStorage.setItem('currentUser', JSON.stringify(this.user));
+          this.router.navigate(['/profile'])
+        },
+        err => {
+          console.log(err)
+        }
       )
       return false
     }
@@ -56,5 +79,9 @@ export class AuthComponent implements OnInit {
       if (container) {
           container.classList.remove("right-panel-active");
       }
+    }
+
+    location(url: string): void {
+      this.router.navigate([url]);
     }
 }

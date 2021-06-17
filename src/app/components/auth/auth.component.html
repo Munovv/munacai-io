@@ -1,7 +1,7 @@
 
 <div class="container" id="container">
   <div class="form-container sign-up-container">
-    <form (submit)="regUser()" method="POST" ngForm #RegForm>
+    <form (submit)="regUser()" method="POST" ngForm #RegForm ngNativeValidate>
       <h1>Регистрация</h1>
         <input type="text" name="username" [(ngModel)]="regFormModel.username" placeholder="Имя" required />
         <input type="email" name="email" [(ngModel)]="regFormModel.email" placeholder="Электронная почта" required/>
@@ -10,11 +10,11 @@
     </form>
   </div>
   <div class="form-container sign-in-container">
-    <form (submit)="authUser()" method="POST" ngForm #AuthForm>
+    <form (ngSubmit)="authUser()" method="POST" ngForm #AuthForm ngNativeValidate>
       <h1>Авторизация</h1>
-      <input type="email" name="email" [(ngModel)]="authFormModel.email" placeholder="Электронная почта" required/>
-      <input type="password" name="password" [(ngModel)]="authFormModel.password" placeholder="Пароль" required />
-      <button type="submit" [disabled]="AuthForm.invalid">Войти</button>
+      <input type="email" required name="email" [(ngModel)]="authFormModel.email" placeholder="Электронная почта"  />
+      <input type="password" required name="password" [(ngModel)]="authFormModel.password" placeholder="Пароль" />
+      <button type="submit" [disabled]="AuthForm.valid">Войти</button>
     </form>
   </div>
   <div class="overlay-container">

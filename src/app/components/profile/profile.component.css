@@ -1,0 +1,45 @@
+@import "~bootstrap/dist/css/bootstrap.css";
+
+header {
+  margin-top: 20px;
+  justify-content: center;
+  text-align: center;
+  display: flex;
+  align-items: center
+}
+
+.navbar-nav {
+  flex-direction: row;
+}
+
+header h2 {
+  margin-right: 50px;
+}
+
+header a {
+  margin-left: 25px;
+}
+
+main .title-file {
+  justify-content: center;
+  text-align: center;
+  display: flex;
+}
+
+.file-list {
+  justify-content: center;
+  text-align: center;
+  margin-top:30px;
+  width: auto;
+  padding: 100px;
+  display: flex;
+}
+
+.file-card {
+  background-color: #fff;
+  border-radius: 10px;
+    box-shadow: 0 3px 7px rgba(0,0,0,0.25),
+      0 2px 2px rgba(0,0,0,0.22);
+  width: 200px;
+  height: 200px;
+}
