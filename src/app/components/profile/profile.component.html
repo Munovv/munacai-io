@@ -1,29 +1,32 @@
 <header>
     <h2>munacai.io</h2>
     <div class="navbar-nav" style="">
-      <a class="nav-item nav-link" href="#">Добавить файл</a>
-      <a class="nav-item nav-link" href="#" (click)="logout()">Выйти из системы</a>
+      <a class="nav-item nav-link" href="#" (click)="logout()">Выйти из {{ this.user.username }}</a>
     </div>
 </header>
 
 <main>
     <div class="title-file">
+      <h1 class="pt-5"> Загрузите файл </h1>
+    </div>
+    <div class="p-4 d-flex justify-content-center mb-4">
+      <form #fileForm="ngForm" ngNativeValidate (ngSubmit)="handleFile(fileForm)">
+        <input class="form-control form-control-lg" id="formFileLg" type="file" (change)="onFileSelected($event)" />
+        <button type="submit" class="btn btn-primary form-control form-control-lg mt-1">Загрузить</button>
+      </form>
+    </div>
+    <div class="title-file">
       <h1 class="pt-5"> Ваши загруженные файлы </h1>
     </div>
     <div class="file-list">
       <div class="row" id="files">
-          <div class="col-md-3">
-            <div class="file-card"></div>
+        <div class="col-md-3 mb-5" *ngFor="let file of this.userFiles" style="display: table;">
+          <div class="file-card pt-5">
+            <h5>{{ file.name }} <span class="badge badge-secondary">{{ file.format }}</span></h5>
+            <p>Создано: {{ file.created_at | date:'dd.MM.yyyy h:m:s' }}</p>
+            <a href="{{ this.url+file.route }}" target="_blank" class="btn btn-primary"> Скачать </a>
           </div>
-          <div class="col-md-3">
-            <div class="file-card"></div>
-          </div>
-          <div class="col-md-3">
-            <div class="file-card"></div>
-          </div>
-          <div class="col-md-3">
-            <div class="file-card"></div>
-          </div>
+        </div>
       </div>
     </div>
 </main>
